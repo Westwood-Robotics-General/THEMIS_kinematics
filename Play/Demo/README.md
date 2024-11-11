@@ -1,1 +1,0 @@
-Due to the large size of the binary files (which exceeds GitHub's file size limit), please download the zip file on wiki [here](https://wiki.bruce-op.com/uploads/demo_controller_0.0.7.zip) and place all the four unzipped files under this folder.

@@ -70,14 +70,15 @@ values = {
     d2_leg: 20.0, 
     d3: 50.0,     
     d4: 50.0 ,     
-    theta1: sp.rad(20),  # 假设 theta1 = 30 度
+    theta1: sp.rad(55),  # 假设 theta1 = 30 度
     theta2: sp.rad(30),  # 假设 theta2 = 45 度
     theta3: sp.rad(60),  # 假设 theta3 = 60 度
-    theta4: sp.rad(10),  # 假设 theta4 = 90 度
+    theta4: sp.rad(15),  # 假设 theta4 = 90 度
     lx: 0.0,             # 假设 lx = 0.1
     ly_leg: 0.0,         # 假设 ly_leg = 0.2
     lz: 0.0              # 假设 lz = 0.3
 }
+
 
 # 将常值替换到位姿矩阵中
 Tb5_numeric = Tb5.subs(values)

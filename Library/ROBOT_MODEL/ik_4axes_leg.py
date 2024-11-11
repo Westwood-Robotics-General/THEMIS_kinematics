@@ -10,12 +10,12 @@ c4, s4 = sp.cos(theta4), sp.sin(theta4)
 
 # 定义数值（根据实际情况调整）
 values = {
-    r33: 0.500000000000000, 
-    r13: 0.296198132726024,   
-    r23: -0.813797681349374, 
-    px: 117.438559214541,     
-    py: 6.39000477851313,     
-    pz: -19.1698217536327,     
+    r33: 0.500000000000000,    
+    r23:  -0.496731764892154, 
+    r13: 0.709406479916223,
+    px: 93.7375655320980,     
+    py: 70.5997172524289,     
+    pz: -22.8578284967116,     
     d1: 20.0,     
     d2_leg: 20.0, 
     d3: 50.0,     
@@ -46,8 +46,8 @@ print(f"Theta2 solutions:\n theta2_1 = {theta2_1_val}\n theta2_2 = {theta2_2_val
 print(f"Theta1 solutions:\n theta1_1 = {theta1_1_val}\n theta1_2 = {theta1_2_val}")
 
 # 计算 A 和 B
-A = (d2_leg * s2 - pz) / c2
-B = (px + s1 * (-c2 * d2_leg - s2 * A)) / c1 - d1
+B = (d2_leg * s2 - pz) / c2
+A = (px + s1 * (-c2 * d2_leg - s2 * B)) / c1 - d1
 
 # 将 theta1_1 和 theta2_1 的数值解代入 A 和 B 的表达式
 A_val = A.subs(values).subs({
@@ -68,18 +68,13 @@ B_val = B.subs(values).subs({
 c4_expr = (A_val**2 + B_val**2 - values[d3]**2 - values[d4]**2) / (2 * values[d3] * values[d4])
 theta4_1 = sp.atan2(sp.sqrt(1 - c4_expr**2), c4_expr) * 180 / pi_val
 
-# 计算 theta3
-#theta3_D = sp.atan2(values[d3] * c4_expr * A_val - values[d4] * sp.sin(theta4_1 * pi_val / 180) * B_val,
- #                   values[d3] * sp.sin(theta4_1 * pi_val / 180) * B_val + values[d4] * c4_expr * A_val)
- # 计算 theta3
-#theta3_D = sp.atan2((d3 + d4*c4_expr) * A_val - d4 * sp.sin(theta4_1 * pi_val / 180) * B_val,
-#                    (d3+ d4*c4_expr) * B_val + d4 *  sp.sin(theta4_1 * pi_val / 180) * A_val)
+
 
 # 计算 theta3
 theta3_D = sp.atan2((values[d3] + values[d4] * c4_expr) * A_val - values[d4] * sp.sin(theta4_1 * pi_val / 180) * B_val,
                     (values[d3] + values[d4] * c4_expr) * B_val + values[d4] * sp.sin(theta4_1 * pi_val / 180) * A_val)
 
-theta3_1 = (theta3_D - sp.pi / 4) * 180 / pi_val
+theta3_1 = (theta3_D-sp.pi/4 ) * 180 / pi_val 
 
 # 代入数值计算
 theta4_1_val = theta4_1.evalf()
@@ -88,3 +83,6 @@ theta3_1_val = theta3_1.evalf()
 print(f"Theta4 solution with theta1 and theta2 substituted:\n theta4_1 = {theta4_1_val}")
 print(f"Theta3 solution:\n theta3_1 = {theta3_D}")
 print(f"Theta3 solution:\n theta3_1 = {theta3_1_val}")
+
+
+
